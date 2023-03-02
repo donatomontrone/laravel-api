@@ -38,11 +38,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::delete('/projects/{project}/delete-type', [AdminProjectsController::class, 'deleteType'])->name('projects.deleteType');
 });
 
-Route::prefix('api')->name('api.')->group(function () {
-    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/{projects}', [ProjectController::class, 'show'])->name('projects.show');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
