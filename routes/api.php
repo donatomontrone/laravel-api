@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProjectController as ApiProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('api')->name('api.')->group(function () {
-    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/{projects}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/projects', [ApiProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/{projects}', [ApiProjectController::class, 'show'])->name('projects.show');
 });

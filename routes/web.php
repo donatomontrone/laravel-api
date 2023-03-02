@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\TypeController as TypeController;
-use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -35,9 +34,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::delete('/{project}/force-delete', [AdminProjectController::class, 'forceDelete'])->name('force-delete');
     Route::post('/restore-all', [AdminProjectController::class, 'restoreAll'])->name('restore-all');
     Route::resource('/types', TypeController::class);
-    Route::delete('/projects/{project}/delete-type', [AdminProjectsController::class, 'deleteType'])->name('projects.deleteType');
+    Route::delete('/projects/{project}/delete-type', [AdminProjectController::class, 'deleteType'])->name('projects.deleteType');
 });
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
